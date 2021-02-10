@@ -30,12 +30,22 @@ class _ImageviewState extends State<Imageview> {
     index = 0;
   }
 
-  cropimage(file) async {
+  cropimage(file, bgcolor, appBarColor) async {
     if (file != null) {
       cropped = await ImageCropper.cropImage(
         sourcePath: file.path,
         aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
         compressQuality: 80,
+        androidUiSettings: AndroidUiSettings(
+          // backgroundColor: bgcolor,
+          statusBarColor: appBarColor,
+          toolbarColor: appBarColor,
+          // activeControlsWidgetColor: Colors.white,
+          toolbarWidgetColor: Colors.white,
+          cropFrameColor: Colors.white,
+          dimmedLayerColor: bgcolor,
+          // cropGridColor: Colors.black
+        )
       );
       setState(() {
         cropped == null ? file = file : file = cropped;
@@ -76,7 +86,8 @@ class _ImageviewState extends State<Imageview> {
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
-
+    Color bgcolor = themeChange.darkTheme ? Colors.black45 : Colors.white;
+    Color appBarColor = themeChange.darkTheme ? Colors.black : Colors.blue[600];
     // TODO: implement build
     return Scaffold(
       body: SafeArea(
@@ -153,7 +164,7 @@ class _ImageviewState extends State<Imageview> {
                         ),
                         FlatButton(
                           onPressed: () {
-                            cropimage(widget.file);
+                            cropimage(widget.file, bgcolor,appBarColor);
                           },
                           child: Column(
                             children: <Widget>[
