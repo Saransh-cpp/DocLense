@@ -37,13 +37,13 @@ class _ImageviewState extends State<Imageview> {
         aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
         compressQuality: 80,
         androidUiSettings: AndroidUiSettings(
-          // backgroundColor: bgcolor,
+          backgroundColor: bgcolor,
           statusBarColor: appBarColor,
           toolbarColor: appBarColor,
           // activeControlsWidgetColor: Colors.white,
           toolbarWidgetColor: Colors.white,
           cropFrameColor: Colors.white,
-          dimmedLayerColor: bgcolor,
+          // dimmedLayerColor: Colors.black,
           // cropGridColor: Colors.black
         )
       );
