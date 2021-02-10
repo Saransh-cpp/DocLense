@@ -38,7 +38,7 @@ class _ImageviewState extends State<Imageview> {
         compressQuality: 80,
       );
       setState(() {
-        file = cropped;
+        cropped == null ? file = file : file = cropped;
         files.add(file);
         index++;
       });
